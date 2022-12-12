@@ -104,7 +104,7 @@ This API call returns a list of tweets in the user home timeline feed. For the p
 				"tweet_id": "TWEET-ID-HERE", 
 				"body": "tweet text here"
 			},
-      {
+			{
 				"uid": "ANOTHER-USER-ID-HERE", 
 				"tweet_id": "TWEET-ID-HERE", 
 				"body": "another tweet text here"
