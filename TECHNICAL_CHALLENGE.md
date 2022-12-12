@@ -13,7 +13,7 @@ The goal of this challenge is to provide us with a better understanding of your 
 
 We want to stress that the solution should not take more than a couple of hours to complete. The goal is not to have a complete, robust solution, but to see how you proceed when you need to produce an MVP in a minimal amount of time. 
 
-# Architecture
+# Architecture Task
 
 ## Description
 
@@ -30,7 +30,7 @@ Please commit the following:
 - There is no hard limit on how many users a user can follow, consider users following hundreds of thousands of other users.
 - The diagram should be accompanied by an explanation of the design decisions made.
 
-# Coding
+# Coding Task
 
 ## Description
 
