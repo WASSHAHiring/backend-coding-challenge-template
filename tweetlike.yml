@@ -1,0 +1,144 @@
+openapi: 3.1.0
+info:
+  title: TweetLike Service
+  description: |-
+    # Backend Engineer Technical Challenge
+
+    ## Purpose
+
+    The goal of this challenge is to provide us with a better understanding of your work style and skills. We will pay particular attention to:
+
+    - Adherence to language idioms and good coding principles.
+    - The presence of appropriate build and dependency management tools.
+    - The application of concept such as DDD, TDD and so on.
+
+    We want to stress that the solution should not take more than a couple of hours to complete. The goal is not to have a complete, robust solution, but to see how you proceed when you need to produce an MVP in a minimal amount of time. 
+
+    ## Task Description
+
+    Write an MVP for an API server for a Twitter-like service. User%s can follow other users, and they can tweet messages. Each user has a home timeline feed that lists all tweets from the users that they follow. 
+
+    Please commit the following:
+
+    - Your source code.
+    - A README file with instructions for building and executing the source code. 
+
+    ## Requirements
+
+    - There is no need for authentication and authorisation.
+    - There is no need for persistence of tweet data to disk, as this is an MVP.
+    - There should be an option to build and run the solution as a container.
+    - You may use your language of choice for the implementation, but Python, Rust or a JVM language would be preferred.
+    - The server should be executable with a single command.
+    - The server should be able run on Windows, Linux and OSX (Including M1 and M2 devices). 
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/api/v1
+paths:
+  /user:
+    tags:
+      - user
+    post:
+      summary: Creates a new user and returns the user id. 
+      description: ''
+      operationId: createUser
+      requestBody:
+        description: Create a new user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '422':
+          description: Email is already in use
+
+  /tweet:
+    post:
+      tags:
+        - tweet
+      summary: Creates a tweet
+      description: ''
+      operationId: createTweet
+      requestBody:
+        description: Create a new tweet
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tweet'
+        required: true
+      responses:
+        '405':
+          description: Invalid input
+        '202':
+          description: Successful operation
+  /user/{id}/feed:
+    get:
+      tags:
+        - feed
+      summary: Load tweet feed for user with ID
+      description: List the most recent tweets
+      operationId: getTweetFeed
+      parameters:
+        - name: id
+          in: path
+          description: The user ID for the feed
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tweet'
+        '400':
+          description: Invalid user ID supplied
+        '404':
+          description: User id not found
+components:
+  schemas:
+    User:
+      required:
+        - email
+      type: object
+      properties:
+        id: #the unique user id
+          type: string
+          format: uuid
+          examples: ["75e3dfb5-54ed-458e-962c-6ffd8ea0b1a1", "551c9b41-dc4e-40f1-acba-4132318993c2"]
+        email: #the user email
+          type: string
+          format: "email"
+          examples: ["bob@bob.com", "taro@yahoo.co.jp"]
+    Tweet:
+      required:
+        - body
+        - user_id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          examples: [10]
+        user_id: #the unique user id
+          type: string
+          format: uuid
+          examples: ["75e3dfb5-54ed-458e-962c-6ffd8ea0b1a1", "551c9b41-dc4e-40f1-acba-4132318993c2"]
+        body:
+          type: string
+          examples: ["what a wonderful day"]
+          minLength: 1
+          maxLength: 120
