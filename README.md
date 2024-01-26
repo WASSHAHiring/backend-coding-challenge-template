@@ -14,7 +14,7 @@ We want to stress that the solution should not take more than a couple of hours 
 
 Write an MVP for an API server for a Twitter-like service. Users can follow other users, and they can tweet messages. Each user has a home timeline feed that lists all tweets from all other users.
 
-Please commit the following:
+Please use this template repository as the base for your work. You can use the template as usual, or fork it. Please send us a link to the repository you created, containg the following:
 
 - Your source code.
 - A README file with instructions for building and executing the source code. 
