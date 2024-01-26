@@ -24,7 +24,7 @@ Please use this template repository as the base for your work. You can use the t
 - There is no need for authentication and authorisation.
 - There is no need for persistence of tweet data to disk, as this is an MVP.
 - There should be an option to build and run the solution as a container.
-- You may use your language or framework of choice for the implementation, but **Django** would be preferred.
+- You may use your language or framework of choice for the implementation, but **Django** should be preferred.
 - The server should be executable with a single command.
 - The server should be able run on Windows, Linux and OSX (Including M1 and M2 devices). 
 
